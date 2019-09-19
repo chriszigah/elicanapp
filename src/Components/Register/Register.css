@@ -11,6 +11,11 @@ light green: #A3C4BC
   margin: 10px 100px;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
 
 .wrapper {
   height: 100vh;
@@ -29,7 +34,6 @@ light green: #A3C4BC
   border-radius: 10px;
   box-shadow: 0px 10px 50px #555;
   background-color: #ffffff;
-  margin: 16px;
 }
 
 form {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Register.css'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Signin from '../SignIn/SignIn';
-//import { Alert } from 'reactstrap';
+import { Alert } from 'reactstrap';
 
 
 
@@ -60,9 +60,8 @@ class Register extends Component {
 		.then(response => response.json())
 			.then(user => {
 				if (user) {
-					//console.log(user)
-	
-					this.props.onRouteChange('signin');
+          console.log(user)
+          alert('Your registration is successfuly, Please Login')
 				}
 			})
 	} else {
@@ -76,7 +75,6 @@ class Register extends Component {
     e.preventDefault();
 
     const { name, value } = e.target;
-    
     let formErrors = this.state.formErrors;
 
     switch (name) {
@@ -113,12 +111,16 @@ class Register extends Component {
   render(){
   const inputsReady = this.state.firstName && this.state.lastName && this.state.email && this.state.password  // changed when state has changed, empty string will return false in JS
   const { formErrors } = this.state;
-  //const alertErrors = formErrors;
+  const alertErrors = formErrors;
 
- 
+  console.log(alertErrors)
   return (
     <div>
-      <div className="wrapper">
+    <Alert color="danger" isOpen={this.state.alertVisible} toggle={this.handleOnAlertDismiss} className="alert">
+       <div></div>
+          Please, identify and fix the error(s) on the form.
+    </Alert>
+    <div className="wrapper">
       <div className="form-wrapper">
         <h1>Create Account</h1>
         <form onSubmit={this.handleSubmit} noValidate>
@@ -189,7 +191,7 @@ class Register extends Component {
              <p>
              <Link 
               to="/signin" 
-              className="f6"
+              className="f6 link dim black db pointer"
               >Sign In </Link>
               </p>
           </div>

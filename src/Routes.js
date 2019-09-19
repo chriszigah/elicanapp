@@ -18,14 +18,16 @@ import AddStudent from './Components/Administration/AddStudent/AddStudent'
     this.state = {
       user: {
         id: '',
-        firstname: 'Chris',
-        lastname:'Tiano',
+        firstname: '',
+        lastname:'',
         passowrd:'',
         email: '',
         entries: 0,
-        joined: ''
+        joined: '',
+        message: '',
+        token: ''
       },
-      isSignedIn : true,
+      isSignedIn : false,
       
     }
   } // End of Constructor
@@ -36,7 +38,9 @@ import AddStudent from './Components/Administration/AddStudent/AddStudent'
     })
   }
 
-
+  redirectToHome =() => {
+    return <Redirect to="/"/>
+  }
   
   loadUser = (user) => {
     this.setState({user: {
@@ -44,53 +48,73 @@ import AddStudent from './Components/Administration/AddStudent/AddStudent'
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
-        joined: user.joined
+        joined: user.joined,
+        token: user.token,
+        message: user.message
     }})
-    console.log(this.state.user); // this should be remove later 4 security
   }
 
   onInputChange = (event) => {
     this.setState( {input: event.target.value});
   }
-
-   
   render() {
-
     return (
       <div className="App">
       <Layout isSignedIn={this.state.isSignedIn} handleSignIn={this.handleSignIn}>
         <Switch>
             <Route exact path="/" render={() => (
-                this.state.isSignedIn ? (
-                    <Redirect to="/home"/>
-                ) : (
-                    <Redirect to="/signin"/>
+              this.state.isSignedIn ? (
+                <Redirect to="/home"/>
+                  ) : (
+                  <Redirect to="/signin"  />
                 )
-                )}/>
-                <Route path="/home" render={()=>(
-                this.state.isSignedIn ? (
-                    <Home user={this.state.user}/>
-                ) : (
-                    <Redirect to="/"/>
-                )
-                )}/>
-                <Route path="/register" render={()=>(
-                this.state.isSignedIn ? (
-                    this.setState({ isSignedIn : false })
-                ) : (
-                    <Register/>
-                )
-                )}/>
+            )}/>
 
-                <Route path="/signin" render={()=>(
-                this.state.isSignedIn ? (
-                    this.setState({ isSignedIn : false })
+            <Route path="/home" render={()=>(
+              this.state.isSignedIn ? (
+                <Home user={this.state.user}/>
                 ) : (
-                    <Signin/>
+                <Redirect to="/"/>
+              )
+            )}/>
+
+            <Route path="/register" render={()=>(
+              this.state.isSignedIn ? (
+                <Redirect to="/home"/>
+                ) : (
+                <Register/>
+              )
+            )}/>
+
+            <Route path="/signin" render={()=>(
+              this.state.isSignedIn ? (
+                <Redirect to="/home"/>
+                ) : (
+                <Signin 
+                  loadUser={this.loadUser} 
+                  handleSignIn={this.handleSignIn} 
+                  redirectToHome={this.redirectToHome} 
+                  user={this.state.user}/>
                 )
-                )}/>
-                <Route path="/administration" exact component={Administration}/>
-                <Route path="/addstudent" exact component={AddStudent}/>
+            )}/>
+
+            <Route path="/administration" render={()=>(
+              this.state.isSignedIn ? (
+                <Administration />
+                ) : (
+                  <Redirect to="/signin"  />
+                )
+              )}
+            />
+
+            <Route path="/addstudent" render={()=>(
+              this.state.isSignedIn ? (
+                <AddStudent />
+                ) : (
+                  <Redirect to="/signin"  />
+                )
+              )}
+            />
         </Switch>
     </Layout>
       </div>

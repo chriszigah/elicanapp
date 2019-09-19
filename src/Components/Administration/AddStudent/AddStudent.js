@@ -40,39 +40,42 @@ const formValid = formErrors => {
 
 
 export class AddStudent extends Component {
-  state = {
-   activeStep: 0,
-   setActiveStep: 0,
-   studentdetails: {
-     firstname: '',
-     middlename: '',
-     surname:'',
-     gender:'',
-     date_of_birth:'',
-     place_of_birth:'',
-     mother_tongue:'',
-     religion:'',
-     religious_denomination:'',
-     hometown: '',
-     hometown_region:'',
-     language_spoken:'',
-     pricture:''
-   },
-   formErrors: {
-    firstname: '',
-    middlename: '',
-    surname:'',
-    gender:'',
-    date_of_birth:'',
-    place_of_birth:'',
-    mother_tongue:'',
-    religion:'',
-    religious_denomination:'',
-    hometown: '',
-    hometown_region:'',
-    language_spoken:'',
-    pricture:''
-   } 
+  constructor(props){
+    super(props);
+    this.state = {
+        activeStep: 0,
+        setActiveStep: 0,
+        studentdetails: {
+          firstname: '',
+          middlename: '',
+          surname:'',
+          gender:'',
+          date_of_birth:'',
+          place_of_birth:'',
+          mother_tongue:'',
+          religion:'',
+          religious_denomination:'',
+          hometown: '',
+          hometown_region:'',
+          language_spoken:'',
+          pricture:''
+        },
+        formErrors: {
+         firstname: '',
+         middlename: '',
+         surname:'',
+         gender:'',
+         date_of_birth:'',
+         place_of_birth:'',
+         mother_tongue:'',
+         religion:'',
+         religious_denomination:'',
+         hometown: '',
+         hometown_region:'',
+         language_spoken:'',
+         pricture:''
+        } 
+    }
   }
 
   handleChange = e => {
@@ -80,7 +83,7 @@ export class AddStudent extends Component {
 
     const { name, value } = e.target;
     
-    let {studentDetails, formErrors } = this.state;
+    let { formErrors } = this.state;
 
     switch (name) {
       case 'firstName':
@@ -110,7 +113,7 @@ export class AddStudent extends Component {
           break;
     }
 
-    this.setState({ studentDetails, [name]: value })
+    this.setState({ formErrors, [name]: value })
   }
 
   handleSubmit = e => {
@@ -184,8 +187,6 @@ export class AddStudent extends Component {
  
   render() {
     const steps = this.getSteps();
-
- 
     return (
       <div className={useStyles.root}>
       <Stepper activeStep={this.state.activeStep} alternativeLabel>

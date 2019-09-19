@@ -9,7 +9,7 @@ const Footer = () => {
     return(
         <div className="footer">
             <Link to="/" className="logo">
-                <img alt="nba logo" src="/images/nba_logo.png"/>
+                <img alt="Elican logo" src="./logo.png"/>
             </Link>
             <div className="right">
                 @ELICAN SCHOOL  {CURRENT_YEAR} All rights reserved

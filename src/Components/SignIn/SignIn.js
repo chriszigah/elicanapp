@@ -47,7 +47,10 @@ class SignIn extends Component {
         .then(user => {
               if(user.id){
                 this.props.loadUser(user);
-                this.props.setState({ isSignedIn: true})
+                this.props.handleSignIn();
+                this.props.redirectToHome();
+          } else {
+            alert('Incorrect Username/Password')
           }
         })
     } else {
@@ -85,7 +88,6 @@ class SignIn extends Component {
   render(){
     const { formErrors } = this.state;
     const inputsReady =  this.state.email && this.state.password  // changed when state has changed, empty string will return false in JS
-
   return (
     <div className="wrapper">
       <div className="form-wrapper">
