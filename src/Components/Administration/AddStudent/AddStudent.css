@@ -1,0 +1,12 @@
+.MuiPaper-root{
+    width: 100%;
+    color: brown
+}
+
+.MuiStepper-alternativeLabel{
+    width: 100%
+}
+
+.fileContainer{
+    background: none;
+}

@@ -1,0 +1,19 @@
+.home_navs {
+    text-align: center;
+}
+
+.btn {
+    margin: 16px;
+    background-color: #001B3A;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 300px;
+    height: 100px;
+}
+
+.btn h3, .fa {
+    color: #fff;
+}
