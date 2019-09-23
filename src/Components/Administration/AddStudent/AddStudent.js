@@ -10,6 +10,7 @@ import './AddStudent.css'
 
 //Student Components
 import UploadImage from './UploadImage/UploadImage';
+import WebcamCapture from './WebcamCapture/WebcamCapture';
 import StudentDetails from './StudentDetails/StudentDetails';  
 
 const useStyles = makeStyles(theme => ({
@@ -40,50 +41,66 @@ const formValid = formErrors => {
 
 
 export class AddStudent extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+
     this.state = {
-        activeStep: 0,
-        setActiveStep: 0,
-        studentdetails: {
-          firstname: '',
-          middlename: '',
-          surname:'',
-          gender:'',
-          date_of_birth:'',
-          place_of_birth:'',
-          mother_tongue:'',
-          religion:'',
-          religious_denomination:'',
-          hometown: '',
-          hometown_region:'',
-          language_spoken:'',
-          pricture:''
-        },
-        formErrors: {
-         firstname: '',
-         middlename: '',
-         surname:'',
-         gender:'',
-         date_of_birth:'',
-         place_of_birth:'',
-         mother_tongue:'',
-         religion:'',
-         religious_denomination:'',
-         hometown: '',
-         hometown_region:'',
-         language_spoken:'',
-         pricture:''
-        } 
-    }
+      activeStep: 0,
+      setActiveStep: 0,
+      firstName: null,
+      middleName: null, 
+      lastName: null,
+      email: null,
+      password: null,
+      formErrors: {
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        email:"",
+        password: "",
+      },
+      alertVisible: false
+    };
   }
 
+  handleOnAlertDismiss = () => {
+    this.setState({ alertVisible: false });
+  }
+
+   handleSubmit = e => {
+    e.preventDefault();
+
+    if(formValid(this.state.formErrors)) {
+		fetch('http://localhost:7000/users/signup', {
+			method: 'post',
+			headers: {'content-Type': 'application/json'},
+			body: JSON.stringify({
+        firstname: this.state.firstName,
+        lastname: this.state.lastName,
+        password: this.state.password,
+				email: this.state.email,
+				joined: new Date()
+			})
+		})
+		.then(response => response.json())
+			.then(user => {
+				if (user) {
+          console.log(user)
+          alert('Your registration is successfuly, Please Login')
+				}
+			})
+	} else {
+		this.setState({
+      alertVisible : !this.state.alertVisible
+    })
+	}	
+  }     
+     
   handleChange = e => {
     e.preventDefault();
 
     const { name, value } = e.target;
-    
-    let { formErrors } = this.state;
+    let formErrors = this.state.formErrors;
 
     switch (name) {
       case 'firstName':
@@ -91,6 +108,11 @@ export class AddStudent extends Component {
         ? "minimum 3 characters required" 
         : ""; 
         break;
+      case 'middleName':
+        formErrors.middleName = value.length < 3
+        ? "minimum 3 characters required"
+        : "";
+        break
       case 'lastName':
         formErrors.lastName = 
         value.length < 3 
@@ -115,57 +137,30 @@ export class AddStudent extends Component {
 
     this.setState({ formErrors, [name]: value })
   }
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    if(formValid(this.state.formErrors)) {
-		fetch('http://localhost:7000/users/signup', {
-			method: 'post',
-			headers: {'content-Type': 'application/json'},
-			body: JSON.stringify({
-        firstname: this.state.firstName,
-        lastname: this.state.lastName,
-        password: this.state.password,
-				email: this.state.email,
-				joined: new Date()
-			})
-		})
-		.then(response => response.json())
-			.then(user => {
-				if (user) {
-					//console.log(user)
-	
-					this.props.onRouteChange('signin');
-				}
-			})
-	} else {
-		console.log('Errro Submitting Form')
-	}	
-  }
   
   getSteps = () => {
-    return ['Upload Image', 'Student Details', 'Health Details', 'Parent Details', 'Other Significant Details', 'Confirm'];
+    return ['Upload Image','Use Webcam', 'Student Details', 'Health Details', 'Parent Details', 'Other Significant Details', 'Confirm'];
   }
   
   getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
-          return <UploadImage />
+          return (<UploadImage/>)
       case 1:
+          return(<WebcamCapture/>)
+      case 2:
         return <StudentDetails 
-                  studentDetails={this.state.studentdetails} 
                   handleChange={this.handleChange} 
                   handleSubmit={this.handleSubmit} 
                   formErrors={this.state.formErrors}
                 />
-      case 2:
-        return 'Health Details';
       case 3:
           return 'Parent Details';
       case 4:
           return 'Other Significan Details';
       case 5:
+        return 'Something Something'
+      case 6:
             return 'Confirm';
       default:
         return 'Uknown stepIndex';
@@ -181,10 +176,10 @@ export class AddStudent extends Component {
   }
 
   handleReset = () => {
-    this.state.setActiveStep(0);
+    this.setState({
+      setActiveStep : 0
+    });
   }
-
- 
   render() {
     const steps = this.getSteps();
     return (

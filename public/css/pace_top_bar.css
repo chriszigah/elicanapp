@@ -1,14 +1,3 @@
-.App {
-  background: #D3B841;   
-  /* background: url('./images.jpg');
-  background-size: cover; */
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #001B3A; 
-}
-
-
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;

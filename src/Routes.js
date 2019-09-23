@@ -27,7 +27,7 @@ import AddStudent from './Components/Administration/AddStudent/AddStudent'
         message: '',
         token: ''
       },
-      isSignedIn : false,
+      isSignedIn : true,
       
     }
   } // End of Constructor
@@ -40,6 +40,10 @@ import AddStudent from './Components/Administration/AddStudent/AddStudent'
 
   redirectToHome =() => {
     return <Redirect to="/"/>
+  }
+
+  redirectToSign =() => {
+    return <Redirect to="/Signin"/>
   }
   
   loadUser = (user) => {
@@ -82,7 +86,7 @@ import AddStudent from './Components/Administration/AddStudent/AddStudent'
               this.state.isSignedIn ? (
                 <Redirect to="/home"/>
                 ) : (
-                <Register/>
+                <Register redirectToSign={this.redirectToSign()}/>
               )
             )}/>
 
