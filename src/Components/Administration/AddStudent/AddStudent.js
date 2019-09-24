@@ -11,7 +11,8 @@ import './AddStudent.css'
 //Student Components
 import UploadImage from './UploadImage/UploadImage';
 import WebcamCapture from './WebcamCapture/WebcamCapture';
-import StudentDetails from './StudentDetails/StudentDetails';  
+import StudentDetails from './StudentDetails/StudentDetails'; 
+//import PreviousSchool from './PreviousSchool/PreviousSchool' 
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -139,7 +140,7 @@ export class AddStudent extends Component {
   }
   
   getSteps = () => {
-    return ['Upload Image','Use Webcam', 'Student Details', 'Health Details', 'Parent Details', 'Other Significant Details', 'Confirm'];
+    return ['Upload Image','Use Webcam', 'Student Details', 'Parent Details', 'Addmission Details', 'Confirm'];
   }
   
   getStepContent = (stepIndex) => {
@@ -155,13 +156,11 @@ export class AddStudent extends Component {
                   formErrors={this.state.formErrors}
                 />
       case 3:
-          return 'Parent Details';
+          return "Parent Details";
       case 4:
-          return 'Other Significan Details';
+          return 'Addmision Details';
       case 5:
-        return 'Something Something'
-      case 6:
-            return 'Confirm';
+        return 'Confirm'
       default:
         return 'Uknown stepIndex';
     }
