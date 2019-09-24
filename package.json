@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.2",
     "@material-ui/icons": "^4.4.1",
+    "@material-ui/pickers": "^3.2.6",
     "material-ui": "^0.20.2",
     "pace": "0.0.4",
     "pace-js": "^1.0.2",

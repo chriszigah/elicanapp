@@ -26,6 +26,7 @@ class WebcamCapture extends Component {
   }
  
   render () {
+    console.log(this.state.dataUri)
     return (
       <div className="App">
         <Camera
@@ -44,7 +45,7 @@ class WebcamCapture extends Component {
           onCameraStart = { (stream) => { this.onCameraStart(stream); } }
           onCameraStop = { () => { this.onCameraStop(); } }
         />
-        {this.state.dataUri ?
+        {this.state.dataUri?
           <img
             alt="imgCamera"
             src={this.state.dataUri}

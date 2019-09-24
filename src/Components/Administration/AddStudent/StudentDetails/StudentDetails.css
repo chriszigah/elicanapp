@@ -11,22 +11,20 @@ light green: #A3C4BC
     margin: 10px 100px;
   }
   
-  
+    
   .formwrapper {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .tform-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 40px;
+    padding: 20px;
     margin: 16px;
   }
-  
+
+.textField{
+  padding: 10px;
+  margin: 18px 20px;
+}
+
+.MuiInputLabel-outlined.MuiInputLabel-marginDense {
+  display: none;
+}
   form {
     width: 90%;
     display: flex;

@@ -15,7 +15,7 @@ import StudentDetails from './StudentDetails/StudentDetails';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: '100%', 
   },
   backButton: {
     marginRight: theme.spacing(1),
