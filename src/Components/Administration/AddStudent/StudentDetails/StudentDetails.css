@@ -7,6 +7,10 @@ medium green: #7EB09B
 light green: #A3C4BC
 */
 
+.MuiPopover-paper{
+  width: 120px;
+}
+
 .alert {
     margin: 10px 100px;
   }
@@ -25,7 +29,8 @@ light green: #A3C4BC
 .MuiInputLabel-outlined.MuiInputLabel-marginDense {
   display: none;
 }
-  form {
+  
+form {
     width: 90%;
     display: flex;
     flex-wrap: wrap;

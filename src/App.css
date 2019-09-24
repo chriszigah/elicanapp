@@ -5,7 +5,9 @@
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #001B3A; 
+  color: #001B3A;
+  display: 'flex';
+  flexWrap: 'wrap'; 
 }
 
 
