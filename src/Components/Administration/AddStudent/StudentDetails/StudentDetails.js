@@ -176,16 +176,15 @@ import Checkbox from '@material-ui/core/Checkbox';
               />
               </p>
               <h1> Health Details </h1>
-
-                <p>
+                  <p>
                   <p>Please tick disease agianse which the child has been vaccinated</p>
-                  <Checkbox value="smallpox"/>Smallpox
+                  <Checkbox value="smallpox"/><p>Smallpox</p>
                   <Checkbox value="diphteria"/>Diphteria
-                  <Checkbox value="whooping Couh"/>Whooping Cough
-                  <Checkbox value="tetanu"/>Tetanus
+                  <Checkbox value="whooping Couh"/>Whooping Cough 
+                  <Checkbox value="tetanu"/>Tetanus 
                   <Checkbox value="measles"/>Measles
-                  <Checkbox value="polio"/>Polio
-                </p> 
+                  <Checkbox value="polio"/>Polio 
+                  </p>
                 <p>
                  <TextField
                     label="Any other health related issue?"
